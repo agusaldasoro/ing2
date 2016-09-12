@@ -1,0 +1,30 @@
+.list-bars {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 50px auto 0 auto;
+}
+
+.title {
+  font-size: 30px;
+  color: gray;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.title-bar {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.item-bar {
+  border-top: solid 1px gray;
+  padding-bottom: 10px;
+}
+
+.item-data-bar {
+  padding-left: 10px;
+}
+
+.item-data-bar-name {
+  font-weight: bold;
+}
