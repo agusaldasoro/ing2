@@ -2,10 +2,22 @@ require 'rails_helper'
 
 describe BarsController do
   describe 'GET #index' do
-    let!(:barWifi) { create(:bar, latitude: -34.5452031, longitude: -58.4394956, address: 'Intendente Güiraldes 22') }
-    let!(:barNotWifi) { create(:bar, latitude: -34.5452031, longitude: -58.4394957, wifi: false, address: 'Intendente Güiraldes 24') }
-    let!(:barAway) { create(:bar, latitude: -34.5573429, longitude: -58.4491869, address: 'Juramento 1499') }
-    let!(:barCloser) { create(:bar, latitude: -34.5452031, longitude: -58.4394955, address: 'Intendente Güiraldes 20') }
+    let!(:barWifi) do
+      create(:bar, latitude: -34.5452031, longitude: -58.4394956,
+                   address: 'Intendente Güiraldes 22')
+    end
+    let!(:barNotWifi) do
+      create(:bar, latitude: -34.5452031, longitude: -58.4394957,
+                   wifi: false, address: 'Intendente Güiraldes 24')
+    end
+    let!(:barAway) do
+      create(:bar, latitude: -34.5573429, longitude: -58.4491869,
+                   address: 'Juramento 1499')
+    end
+    let!(:barCloser) do
+      create(:bar, latitude: -34.5452031, longitude: -58.4394955,
+                   address: 'Intendente Güiraldes 20')
+    end
 
     context 'when none params are given' do
       before :each do
@@ -13,7 +25,8 @@ describe BarsController do
       end
 
       it 'populates an array of bars' do
-        expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barAway, barCloser)
+        expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barAway,
+                                                  barCloser)
       end
 
       it 'renders the :index view' do
@@ -27,7 +40,8 @@ describe BarsController do
       end
 
       it 'populates an array of bars' do
-        expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barAway, barCloser)
+        expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barAway,
+                                                  barCloser)
       end
     end
 
@@ -56,8 +70,10 @@ describe BarsController do
     context 'when distance params is given' do
       context 'when address is given' do
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', address: 'Intendente Güiraldes 22' }
-          expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barCloser)
+          get :index, params: { distance: '0.4',
+                                address: 'Intendente Güiraldes 22' }
+          expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi,
+                                                    barCloser)
         end
 
         it 'populates an array of bars' do
@@ -68,12 +84,15 @@ describe BarsController do
 
       context 'when lat and long are given' do
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', lat: -34.5452031, long: -58.4394956}
-          expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi, barCloser)
+          get :index, params: { distance: '0.4', lat: -34.5452031,
+                                long: -58.4394956 }
+          expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi,
+                                                    barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', lat: -34.5573429, long: -58.4491869}
+          get :index, params: { distance: '0.4', lat: -34.5573429,
+                                long: -58.4491869 }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
@@ -82,48 +101,56 @@ describe BarsController do
     context 'when wifi and distance params are given' do
       context 'when true and address is given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', address: 'Intendente Güiraldes 22' }
+          get :index, params: { wifi: true, distance: '0.4',
+                                address: 'Intendente Güiraldes 22' }
           expect(assigns(:bars)).to contain_exactly(barWifi, barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', address: 'Juramento 1499' }
+          get :index, params: { wifi: true, distance: '0.4',
+                                address: 'Juramento 1499' }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
 
       context 'when false and address is given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', address: 'Intendente Güiraldes 22' }
+          get :index, params: { wifi: false, distance: '0.4',
+                                address: 'Intendente Güiraldes 22' }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', address: 'Juramento 1499' }
+          get :index, params: { wifi: false, distance: '0.4',
+                                address: 'Juramento 1499' }
           expect(assigns(:bars)).to eq([])
         end
       end
 
       context 'when true lat and long are given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', lat: -34.5452031, long: -58.4394956}
+          get :index, params: { wifi: true, distance: '0.4', lat: -34.5452031,
+                                long: -58.4394956 }
           expect(assigns(:bars)).to contain_exactly(barWifi, barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', lat: -34.5573429, long: -58.4491869}
+          get :index, params: { wifi: true, distance: '0.4', lat: -34.5573429,
+                                long: -58.4491869 }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
 
       context 'when false lat and long are given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', lat: -34.5452031, long: -58.4394956}
+          get :index, params: { wifi: false, distance: '0.4', lat: -34.5452031,
+                                long: -58.4394956 }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', lat: -34.5573429, long: -58.4491869}
+          get :index, params: { wifi: false, distance: '0.4', lat: -34.5573429,
+                                long: -58.4491869 }
           expect(assigns(:bars)).to eq([])
         end
       end

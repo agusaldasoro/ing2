@@ -5,5 +5,8 @@ class Bar < ApplicationRecord
                    lng_column_name: :longitude
 
   scope :wifi, -> (has_wifi) { where(wifi: has_wifi) }
-  scope :in_range, -> (distance, place) { within(distance, origin: place, units: :kms) }
+  scope :in_range, -> (distance, place) {
+    within(distance, origin: place,
+                     units: :kms)
+  }
 end
