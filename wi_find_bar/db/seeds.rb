@@ -1,7 +1,17 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+FactoryGirl.create(:bar, name: 'Foo Bar 1', wifi: true)
+FactoryGirl.create(:bar, name: 'Foo Bar 2', wifi: false)
+FactoryGirl.create(:bar, name: 'Foo Bar 3', wifi: true)
+FactoryGirl.create(:bar, name: 'Foo Bar 4', wifi: true)
+FactoryGirl.create(:bar, name: 'Foo Bar 5', wifi: true)
+FactoryGirl.create(:bar, name: 'Foo Bar 6', wifi: false)
+FactoryGirl.create(:bar, name: 'Foo Bar 7', wifi: true)
+FactoryGirl.create(:bar, name: 'Foo Bar 8', wifi: true)
+
+FactoryGirl.create(:location, lat: -34.5455969, lng: -58.4402055, address: 'Intendente Güiraldes 22', bar: Bar.find(1))
+FactoryGirl.create(:location, lat: -34.5461594, lng: -58.4407214, address: 'Intendente Güiraldes 24', bar: Bar.find(2))
+FactoryGirl.create(:location, lat: -34.5573429, lng: -58.4491869, address: 'Juramento 1499', bar: Bar.find(3))
+FactoryGirl.create(:location, lat: -34.5461594, lng: -58.4407214, address: 'Intendente Güiraldes 20', bar: Bar.find(4))
+FactoryGirl.create(:location, lat: -34.5815033, lng: -58.4259446, address: 'Güemes 4600', bar: Bar.find(5))
+FactoryGirl.create(:location, lat: -34.5805608, lng: -58.4275314, address: 'Güemes 4800', bar: Bar.find(6))
+FactoryGirl.create(:location, lat: -34.4909024, lng: -58.5143183, address: 'Juramento 1599', bar: Bar.find(7))
+FactoryGirl.create(:location, lat: -34.5452285, lng: -58.4410597, address: 'Intendente Güiraldes 220', bar: Bar.find(8))
