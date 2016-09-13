@@ -15,16 +15,20 @@ describe BarsController do
       create(:bar, name: 'Foo Bar 4', wifi: true)
     end
     let!(:address_IG22) do
-      create(:location, lat: -34.5455969, lng: -58.4402055, address: 'Intendente Güiraldes 22', bar: barWifi)
+      create(:location, lat: -34.5455969, lng: -58.4402055,
+                        address: 'Intendente Güiraldes 22', bar: barWifi)
     end
     let!(:address_IG24) do
-      create(:location, lat: -34.5461594, lng: -58.4407214, address: 'Intendente Güiraldes 24', bar: barNotWifi)
+      create(:location, lat: -34.5461594, lng: -58.4407214,
+                        address: 'Intendente Güiraldes 24', bar: barNotWifi)
     end
     let!(:lat_lng_J1499) do
-      create(:location, lat: -34.5573429, lng: -58.4491869, address: 'Juramento 1499', bar: barAway)
+      create(:location, lat: -34.5573429, lng: -58.4491869,
+                        address: 'Juramento 1499', bar: barAway)
     end
     let!(:lat_lng_IG20) do
-      create(:location, lat: -34.5461594, lng: -58.4407214, address: 'Intendente Güiraldes 20', bar: barCloser)
+      create(:location, lat: -34.5461594, lng: -58.4407214,
+                        address: 'Intendente Güiraldes 20', bar: barCloser)
     end
 
     context 'when none params are given' do
