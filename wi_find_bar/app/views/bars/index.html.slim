@@ -1,0 +1,7 @@
+.list-bars
+  .title
+    | Listado de Bares
+  .list
+    - @bars.each do |b|
+      .item-bar
+        = render 'bar_row', bar: b
