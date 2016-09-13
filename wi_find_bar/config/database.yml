@@ -17,9 +17,13 @@
 development: &default
   adapter: postgresql
   encoding: unicode
-  database: wi_find_bar
+  database: wi_find_bar_development
   pool: 5
-  username: <%= ENV.fetch('DB_USERNAME', 'wi_find_bar') %>
-  password: <%= ENV.fetch('DB_PASSWORD', 'wi_find_bar') %>
-  host: <%= ENV.fetch('DB_1_PORT_5432_TCP_ADDR', 'localhost') %>
-  port: <%= ENV.fetch('DB_1_PORT_5432_TCP_PORT', '5432') %>
+  username: wi_find_bar
+  password: wi_find_bar
+  host: localhost
+  port: 5432
+
+test: &test
+  <<: *default
+  database: wi_find_bar_test
