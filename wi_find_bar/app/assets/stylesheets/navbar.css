@@ -1,0 +1,9 @@
+.navbar {
+  height: 40px;
+  background-color: darkTurquoise;
+  color: white;
+  font-weight: bold;
+  font-size: 34px;
+  margin: 0 auto 0 auto;
+  text-align: center;
+}

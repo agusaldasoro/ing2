@@ -1,7 +1,17 @@
-.list-bars
-  .title
-    | Listado de Bares
-  .list
-    - @bars.each do |b|
-      .item-bar
-        = render 'bar_row', bar: b
+/ Render smart listing controls form
+.bars-index
+  .filter-options
+    = smart_listing_controls_for(:bars, {class: "form-inline text-right"}) do
+      .filter-title
+        | Wifi:
+      .option
+        = radio_button_tag 'filter_options[wifi]', '', true, class: 'radio-button-option'
+        = label_tag :wifi, 'Indistinto', class: 'option-text'
+      .option
+        = radio_button_tag 'filter_options[wifi]', 'true', false, class: 'radio-button-option'
+        = label_tag :wifi, 'Tiene WiFi', class: 'option-text'
+      .option
+        = radio_button_tag 'filter_options[wifi]', 'false', false, class: 'radio-button-option'
+        = label_tag :wifi, 'No tiene WiFi', class: 'option-text'
+  .bars-index-list
+    = smart_listing_render :bars
