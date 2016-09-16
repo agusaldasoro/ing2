@@ -13,5 +13,12 @@
       .option
         = radio_button_tag 'filter_options[wifi]', 'false', false, class: 'radio-button-option'
         = label_tag :wifi, 'No tiene WiFi', class: 'option-text'
+      .filter-title
+        | Distancia (en Kms):
+      .option
+        = text_field_tag 'filter_options[address]', '', class: "placeholder-direction",
+                                        placeholder: "Dirección", autocomplete: :off
+        = number_field_tag 'filter_options[distance]', '', class: 'distance-input', min: 0, value: 0.4, step: 0.1
+
   .bars-index-list
     = smart_listing_render :bars
