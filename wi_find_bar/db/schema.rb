@@ -10,24 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_912_235_112) do
+ActiveRecord::Schema.define(version: 20160912235112) do
+
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'bars', force: :cascade do |t|
-    t.string   'name'
-    t.boolean  'wifi'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "bars", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "wifi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'locations', force: :cascade do |t|
-    t.integer  'bar_id'
-    t.float    'lat'
-    t.float    'lng'
-    t.string   'address'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['bar_id'], name: 'index_locations_on_bar_id', using: :btree
+  create_table "locations", force: :cascade do |t|
+    t.integer  "bar_id"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bar_id"], name: "index_locations_on_bar_id", using: :btree
   end
+
 end
