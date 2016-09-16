@@ -60,7 +60,7 @@ describe BarsController do
     context 'when wifi params is given' do
       context 'when true' do
         before :each do
-          get :index, params: { wifi: 'true' }
+          get :index, params: { filter_options: { wifi: 'true' } }
         end
 
         it 'populates an array of bars' do
@@ -70,7 +70,7 @@ describe BarsController do
 
       context 'when false' do
         before :each do
-          get :index, params: { wifi: 'false' }
+          get :index, params: { filter_options: { wifi: 'false' } }
         end
 
         it 'populates an array of bars' do
@@ -82,29 +82,29 @@ describe BarsController do
     context 'when distance params is given' do
       context 'when address is given' do
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4',
-                                address: 'Intendente Güiraldes 22' }
+          get :index, params: { filter_options: { distance: '0.4',
+                                                  address: 'Intendente Güiraldes 22' } }
           expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi,
                                                     barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', address: 'Juramento 1499' }
+          get :index, params: { filter_options: { distance: '0.4', address: 'Juramento 1499' } }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
 
       context 'when lat and lng are given' do
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', lat: -34.5452031,
-                                lng: -58.4394956 }
+          get :index, params: { filter_options: { distance: '0.4', lat: -34.5452031,
+                                                  lng: -58.4394956 } }
           expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi,
                                                     barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { distance: '0.4', lat: -34.5573429,
-                                lng: -58.4491869 }
+          get :index, params: { filter_options: { distance: '0.4', lat: -34.5573429,
+                                                  lng: -58.4491869 } }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
@@ -113,56 +113,56 @@ describe BarsController do
     context 'when wifi and distance params are given' do
       context 'when true and address is given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4',
-                                address: 'Intendente Güiraldes 22' }
+          get :index, params: { filter_options: { wifi: true, distance: '0.4',
+                                                  address: 'Intendente Güiraldes 22' } }
           expect(assigns(:bars)).to contain_exactly(barWifi, barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4',
-                                address: 'Juramento 1499' }
+          get :index, params: { filter_options: { wifi: true, distance: '0.4',
+                                                  address: 'Juramento 1499' } }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
 
       context 'when false and address is given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4',
-                                address: 'Intendente Güiraldes 22' }
+          get :index, params: { filter_options: { wifi: false, distance: '0.4',
+                                                  address: 'Intendente Güiraldes 22' } }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4',
-                                address: 'Juramento 1499' }
+          get :index, params: { filter_options: { wifi: false, distance: '0.4',
+                                                  address: 'Juramento 1499' } }
           expect(assigns(:bars)).to eq([])
         end
       end
 
       context 'when true lat and lng are given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', lat: -34.5452031,
-                                lng: -58.4394956 }
+          get :index, params: { filter_options: { wifi: true, distance: '0.4', lat: -34.5452031,
+                                                  lng: -58.4394956 } }
           expect(assigns(:bars)).to contain_exactly(barWifi, barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: true, distance: '0.4', lat: -34.5573429,
-                                lng: -58.4491869 }
+          get :index, params: { filter_options: { wifi: true, distance: '0.4', lat: -34.5573429,
+                                                  lng: -58.4491869 } }
           expect(assigns(:bars)).to contain_exactly(barAway)
         end
       end
 
       context 'when false lat and lng are given' do
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', lat: -34.5452031,
-                                lng: -58.4394956 }
+          get :index, params: { filter_options: { wifi: false, distance: '0.4', lat: -34.5452031,
+                                                  lng: -58.4394956 } }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { wifi: false, distance: '0.4', lat: -34.5573429,
-                                lng: -58.4491869 }
+          get :index, params: { filter_options: { wifi: false, distance: '0.4', lat: -34.5573429,
+                                                  lng: -58.4491869 } }
           expect(assigns(:bars)).to eq([])
         end
       end

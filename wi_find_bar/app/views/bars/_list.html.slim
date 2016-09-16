@@ -1,0 +1,7 @@
+.list-bars
+  .title
+    | Bares
+  .list
+    - smart_listing.collection.each do |b|
+      .item-bar
+        = render 'bar_row', bar: b

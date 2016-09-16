@@ -1,11 +1,6 @@
 .title-bar
-  | Bar
+  = bar.name
 .data-bar
-  .item-data-bar
-    .item-data-bar-name
-      | Nombre
-    .item-data-bar-data
-      = bar.name
   .item-data-bar
     .item-data-bar-name
       | Ubicación
@@ -25,5 +20,8 @@
     .item-data-bar-name
       | Wifi
     .item-data-bar-data
-      = bar.wifi
+      - if bar.wifi
+        | Sí
+      - else
+        | No
 

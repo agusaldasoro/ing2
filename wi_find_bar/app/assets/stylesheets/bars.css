@@ -1,7 +1,7 @@
 .list-bars {
-  padding: 40px;
+  padding: 40px 0 40px 0;
   max-width: 1000px;
-  margin: 50px auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .title {
@@ -11,9 +11,22 @@
   padding-bottom: 20px;
 }
 
+.filter-title {
+  font-size: 20px;
+  color: midnightBlue;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
 .title-bar {
   font-size: 20px;
   font-weight: bold;
+  color: midnightBlue;
+  padding: 5px;
+}
+
+.data-bar {
+  display: flex;
 }
 
 .item-bar {
@@ -23,8 +36,22 @@
 
 .item-data-bar {
   padding-left: 10px;
+  width: 25%;
 }
 
 .item-data-bar-name {
   font-weight: bold;
+}
+
+.bars-index {
+  display: flex;
+}
+
+.filter-options {
+  width: 25%;
+  padding: 80px 0 40px 20px;
+}
+
+.bars-index-list {
+  width: 70%;
 }

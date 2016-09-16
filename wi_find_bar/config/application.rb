@@ -1,18 +1,18 @@
-require_relative 'boot'
+require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require(:default, Rails.env)
 
 module WiFindBar
   class Application < Rails::Application
     config.generators do |g|
       g.template_engine :slim
     end
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.encoding = 'utf-8'
+    config.active_support.escape_html_entities_in_json = true
+    config.assets.enabled = true
   end
 end
