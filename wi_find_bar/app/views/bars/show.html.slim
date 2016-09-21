@@ -1,0 +1,26 @@
+.show-bar
+  .side-bar
+    .bar-title
+      = @bar.name
+    .bar-body
+      .location
+        .address
+          = @location.address
+        .item
+          .item-name
+            | Latitud:
+          .item-data
+            = @location.lat
+        .item
+          .item-name
+            | Longitud:
+          .item-data
+            = @location.lng
+      .information
+        | Tiene wifi:
+        - if @bar.wifi
+          | Sí.
+        - else
+          | No.
+  .map-bar
+    = image_tag('map.jpg', class: 'map')
