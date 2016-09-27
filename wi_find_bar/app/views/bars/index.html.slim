@@ -1,24 +1,22 @@
-/ Render smart listing controls form
 .bars-index
   .filter-options
     = smart_listing_controls_for(:bars, {class: "form-inline text-right"}) do
       .filter-title
         | Wifi:
       .option
-        = radio_button_tag 'filter_options[wifi]', '', true, class: 'radio-button-option'
+        = radio_button_tag 'filter_options[has_wifi]', '', true, class: 'radio-button-option'
         = label_tag :wifi, 'Indistinto', class: 'option-text'
       .option
-        = radio_button_tag 'filter_options[wifi]', 'true', false, class: 'radio-button-option'
+        = radio_button_tag 'filter_options[has_wifi]', 'true', false, class: 'radio-button-option'
         = label_tag :wifi, 'Tiene WiFi', class: 'option-text'
       .option
-        = radio_button_tag 'filter_options[wifi]', 'false', false, class: 'radio-button-option'
+        = radio_button_tag 'filter_options[has_wifi]', 'false', false, class: 'radio-button-option'
         = label_tag :wifi, 'No tiene WiFi', class: 'option-text'
       .filter-title
         | Distancia (en Kms):
       .option
-        = text_field_tag 'filter_options[address]', '', class: "placeholder-direction",
+        = text_field_tag 'filter_distance[address]', '', class: "placeholder-direction",
                                         placeholder: "Dirección", autocomplete: :off
-        = number_field_tag 'filter_options[distance]', '', class: 'distance-input', min: 0, value: 0.4, step: 0.1
-
+        = number_field_tag 'filter_distance[distance]', '', class: 'distance-input', min: 0, value: 0.4, step: 0.1
   .bars-index-list
     = smart_listing_render :bars

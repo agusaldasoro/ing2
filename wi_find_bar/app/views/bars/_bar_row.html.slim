@@ -5,23 +5,22 @@
     .item-data-bar-name
       | Ubicación
     .item-data-bar-data
-      = bar.location.address
+      = bar.address.value
   .item-data-bar
     .item-data-bar-name
       | Latitud
     .item-data-bar-data
-      = bar.location.lat
+      = bar.address.lat
   .item-data-bar
     .item-data-bar-name
       | Longitud
     .item-data-bar-data
-      = bar.location.lng
+      = bar.address.lng
   .item-data-bar
     .item-data-bar-name
       | Wifi
     .item-data-bar-data
-      - if bar.wifi
+      - if bar.wifi.value == 'true'
         | Sí
       - else
         | No
-

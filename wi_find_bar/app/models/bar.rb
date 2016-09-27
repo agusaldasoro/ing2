@@ -1,14 +1,13 @@
 class Bar < ApplicationRecord
-  include Filterable
-  has_one :location
+  has_many :characteristics
 
   validates :name, presence: true
-  validates :wifi, inclusion: [true, false]
 
-  acts_as_mappable through: :location
+  def address
+    Address.find_by_bar_id(id)
+  end
 
-  scope :wifi, -> (has_wifi) { where(wifi: has_wifi) }
-  scope :in_distance_range, lambda { |distance, place|
-    joins(:location).within(distance, origin: place, units: :kms)
-  }
+  def wifi
+    HasWifi.find_by_bar_id(id)
+  end
 end

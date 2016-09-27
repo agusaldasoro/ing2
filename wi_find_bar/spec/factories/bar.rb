@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :bar do
-    name   { Faker::Name.title }
-    wifi   { true }
+    name { Faker::Name.title }
   end
 end
