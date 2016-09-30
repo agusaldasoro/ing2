@@ -16,11 +16,15 @@
       | Longitud
     .item-data-bar-data
       = bar.address.lng
-  .item-data-bar
-    .item-data-bar-name
-      | Wifi
-    .item-data-bar-data
-      - if bar.wifi.value == 'true'
-        | Sí
-      - else
-        | No
+  - bar.characteristics.each do |c|
+    .item-data-bar
+      - unless c.type == 'Address'
+        .item-data-bar-name
+          = c.type.constantize
+        .item-data-bar-data
+          = c.value
+      / | Wifi
+      / - if bar.wifi.value == 'true'
+      /   | Sí
+      / - else
+      /   | No

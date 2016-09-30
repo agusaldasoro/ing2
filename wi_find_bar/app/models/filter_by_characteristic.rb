@@ -6,9 +6,8 @@ class FilterByCharacteristic < Filter
   end
 
   def check(bar)
-    bar.characteristics.each do |c|
-      return true if characteristic.type == c.type && characteristic.value == c.value
-    end
-    false
+    char = characteristic.type.constantize.find_by_bar_id(bar.id)
+    return false unless char.present?
+    char.value == characteristic.value
   end
 end

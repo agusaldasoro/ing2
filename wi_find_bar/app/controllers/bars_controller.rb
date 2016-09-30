@@ -2,17 +2,16 @@ class BarsController < ApplicationController
   include SmartListing::Helper::ControllerExtensions
   helper  SmartListing::Helper
 
-  def show
-    @bar = Bar.last
-    @location = @bar.location
-  end
-
   def index
     bars_scope = filter if (filter_options.present? && any_valid?) ||
                            params_for_distance_range?
     bars_scope ||= BarAgency.new.search_all_bars
     @bars = smart_listing_create :bars, bars_scope, partial: 'bars/list',
                                                     default_sort: { name: 'asc' }
+  end
+
+  def show
+    @bar = Bar.find(params[:id])
   end
 
   private
