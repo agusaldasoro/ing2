@@ -13,7 +13,7 @@ FactoryGirl.create(:has_wifi, value: 'true', bar: bar3)
 FactoryGirl.create(:has_wifi, value: 'true', bar: bar4)
 FactoryGirl.create(:has_wifi, value: 'true', bar: bar5)
 FactoryGirl.create(:has_wifi, value: 'false', bar: bar6)
-FactoryGirl.create(:has_wifi, value: 'true', bar: bar7)
+FactoryGirl.create(:has_wifi, value: 'false', bar: bar7)
 FactoryGirl.create(:has_wifi, value: 'true', bar: bar8)
 
 FactoryGirl.create(:address, lat: -34.5455925, lng: -58.4402055,

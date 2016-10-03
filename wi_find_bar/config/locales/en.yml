@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  HasWifi: "Tiene Wifi"
+  trueValue: "Sí"
+  falseValue: "No"
