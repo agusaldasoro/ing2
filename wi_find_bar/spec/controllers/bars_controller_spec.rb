@@ -58,7 +58,7 @@ describe BarsController do
     context 'when wifi params is given' do
       context 'when true' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'true' } }
+          get :index, params: { filter_has: { has_wifi: 'true' } }
         end
 
         it 'populates an array of bars' do
@@ -68,7 +68,7 @@ describe BarsController do
 
       context 'when false' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'false' } }
+          get :index, params: { filter_has: { has_wifi: 'false' } }
         end
 
         it 'populates an array of bars' do
@@ -110,14 +110,14 @@ describe BarsController do
     context 'when wifi and distance params are given' do
       context 'and wifi:true, address & distance correct' do
         it 'populates an array of bars' do
-          get :index, params: { filter_options: { has_wifi: true },
+          get :index, params: { filter_has: { has_wifi: true },
                                 filter_distance: { distance: '0.4',
                                                    address: 'Intendente Güiraldes 22' } }
           expect(assigns(:bars)).to contain_exactly(barWifi, barCloser)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { filter_options: { has_wifi: true },
+          get :index, params: { filter_has: { has_wifi: true },
                                 filter_distance: { distance: '0.4',
                                                    address: 'Juramento 1499' } }
           expect(assigns(:bars)).to contain_exactly(barAway)
@@ -126,7 +126,7 @@ describe BarsController do
 
       context 'and wifi:true, address is missing' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'true' },
+          get :index, params: { filter_has: { has_wifi: 'true' },
                                 filter_distance: { distance: '0.4' } }
         end
 
@@ -137,7 +137,7 @@ describe BarsController do
 
       context 'and wifi:true, distance is missing' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'true' },
+          get :index, params: { filter_has: { has_wifi: 'true' },
                                 filter_distance: { address: 'Intendente Güiraldes 22' } }
         end
 
@@ -148,14 +148,14 @@ describe BarsController do
 
       context 'and wifi:false, address & distance correct' do
         it 'populates an array of bars' do
-          get :index, params: { filter_options: { has_wifi: false },
+          get :index, params: { filter_has: { has_wifi: false },
                                 filter_distance: { distance: '0.4',
                                                    address: 'Intendente Güiraldes 22' } }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
 
         it 'populates an array of bars' do
-          get :index, params: { filter_options: { has_wifi: false },
+          get :index, params: { filter_has: { has_wifi: false },
                                 filter_distance: { distance: '0.4',
                                                    address: 'Juramento 1499' } }
           expect(assigns(:bars)).to eq([])
@@ -164,7 +164,7 @@ describe BarsController do
 
       context 'and wifi:false, address is missing' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'false' },
+          get :index, params: { filter_has: { has_wifi: 'false' },
                                 filter_distance: { distance: '0.4' } }
         end
 
@@ -175,7 +175,7 @@ describe BarsController do
 
       context 'and wifi:false, address is missing' do
         before :each do
-          get :index, params: { filter_options: { has_wifi: 'false' },
+          get :index, params: { filter_has: { has_wifi: 'false' },
                                 filter_distance: { address: 'Intendente Güiraldes 22' } }
         end
 
