@@ -5,22 +5,23 @@
     .bar-body
       .location
         .address
-          = @location.address
+          = @bar.address.value
         .item
           .item-name
             | Latitud:
           .item-data
-            = @location.lat
+            = @bar.address.lat
         .item
           .item-name
             | Longitud:
           .item-data
-            = @location.lng
+            = @bar.address.lng
       .information
-        | Tiene wifi:
-        - if @bar.wifi
-          | Sí.
-        - else
-          | No.
+        - @bar.characteristics.each do |c|
+          - unless c.type == 'Address'
+            .item-data-bar-name
+              = t("#{c.type}")
+            .item-data-bar-data
+              = t("#{c.value}Value")           
   .map-bar
-    = image_tag('map.jpg', class: 'map')
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=2000x2000&markers=color:blue|label:A|#{@bar.address.lat}, #{@bar.address.lng}&key=AIzaSyD3KTrkOMrIxA95d-QOnfyaofqRRpoAEd8"

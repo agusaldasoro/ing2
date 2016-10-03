@@ -7,6 +7,6 @@ class FilterByDistance < Filter
   end
 
   def check(bar)
-    bar.address.distance_to(address, units: :kms) <= distance
+    Maps.new.distance_from_to(address, bar.address) <= distance
   end
 end
