@@ -4,13 +4,13 @@
       .filter-title
         | Wifi:
       .option
-        = radio_button_tag 'filter_options[has_wifi]', '', true, class: 'radio-button-option'
+        = radio_button_tag 'filter_has[has_wifi]', '', true, class: 'radio-button-option'
         = label_tag :wifi, 'Indistinto', class: 'option-text'
       .option
-        = radio_button_tag 'filter_options[has_wifi]', 'true', false, class: 'radio-button-option'
+        = radio_button_tag 'filter_has[has_wifi]', 'true', false, class: 'radio-button-option'
         = label_tag :wifi, 'Tiene WiFi', class: 'option-text'
       .option
-        = radio_button_tag 'filter_options[has_wifi]', 'false', false, class: 'radio-button-option'
+        = radio_button_tag 'filter_has[has_wifi]', 'false', false, class: 'radio-button-option'
         = label_tag :wifi, 'No tiene WiFi', class: 'option-text'
       .filter-title
         | Distancia (en Kms):

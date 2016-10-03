@@ -1,4 +1,4 @@
-class FilterByCharacteristic < Filter
+class FilterByHasCharacteristic < Filter
   attr_accessor :characteristic
 
   def initialize(characteristic)
