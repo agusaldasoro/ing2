@@ -17,14 +17,9 @@
     .item-data-bar-data
       = bar.address.lng
   - bar.characteristics.each do |c|
-    .item-data-bar
-      - unless c.type == 'Address'
+    - unless c.type == 'Address'
+      .item-data-bar
         .item-data-bar-name
-          = c.type.constantize
+          = t("#{c.type}")
         .item-data-bar-data
-          = c.value
-      / | Wifi
-      / - if bar.wifi.value == 'true'
-      /   | Sí
-      / - else
-      /   | No
+          = t("#{c.value}Value")
