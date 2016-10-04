@@ -1,10 +1,10 @@
-class BarAgency
+class PublicBarAgency
   def search_all_bars
-    Bar.all
+    BarRegistry.new.all_approved_bars
   end
 
   def search_and_filter(filters)
-    bars = Bar.all.to_a
+    bars = search_all_bars.to_a
     filters.each do |filter|
       bars = bars.select { |bar| filter.check(bar) }
     end

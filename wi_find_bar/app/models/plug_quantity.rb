@@ -1,0 +1,2 @@
+class PlugQuantity < Characteristic
+end

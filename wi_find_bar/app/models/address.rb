@@ -6,10 +6,6 @@ class Address < Characteristic
   # if lat and lng are setted, then there's no need to geocode (isn't too accurate)
   after_create :geocode_address, if: -> { value.present? && lat.blank? && lng.blank? }
 
-  # def value
-  #   self[:value]
-  # end
-
   private
 
   def geocode_address

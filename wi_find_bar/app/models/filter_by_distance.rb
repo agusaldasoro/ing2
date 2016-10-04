@@ -1,12 +1,12 @@
 class FilterByDistance < Filter
-  attr_accessor :distance, :address
+  attr_accessor :address, :distance
 
-  def initialize(distance, address)
-    @distance = distance
+  def initialize(address, distance)
     @address = address
+    @distance = distance
   end
 
   def check(bar)
-    Maps.new.distance_from_to(address, bar.address) <= distance
+    Cartographer.new.distance_from_to(address, bar.address) <= distance
   end
 end

@@ -1,0 +1,2 @@
+class AveragePrice < Characteristic
+end

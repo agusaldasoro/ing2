@@ -1,0 +1,2 @@
+class CloseTime < Characteristic
+end

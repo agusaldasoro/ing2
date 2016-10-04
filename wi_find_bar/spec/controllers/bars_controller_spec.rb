@@ -20,14 +20,19 @@ describe BarsController do
       create(:address, lat: -34.5461594, lng: -58.4407214,
                        value: 'Intendente Güiraldes 24', bar: barNotWifi)
     end
-    let!(:lat_lng_J1499) do
+    let!(:address_J1499) do
       create(:address, lat: -34.5573429, lng: -58.4491869,
                        value: 'Juramento 1499', bar: barAway)
     end
-    let!(:lat_lng_IG20) do
+    let!(:address_IG20) do
       create(:address, lat: -34.5461594, lng: -58.4407214,
                        value: 'Intendente Güiraldes 20', bar: barCloser)
     end
+
+    let!(:plugs_10) { create(:plug_quantity, value: '10', bar: barWifi) }
+    let!(:plugs_20) { create(:plug_quantity, value: '20', bar: barNotWifi) }
+    let!(:plugs_30) { create(:plug_quantity, value: '30', bar: barAway) }
+    let!(:plugs_40) { create(:plug_quantity, value: '40', bar: barCloser) }
 
     context 'when none params are given' do
       before :each do
@@ -88,6 +93,32 @@ describe BarsController do
       it 'populates an array of bars' do
         get :index, params: { filter_distance: { distance: '0.4', address: 'Juramento 1499' } }
         expect(assigns(:bars)).to contain_exactly(barAway)
+      end
+    end
+
+    context 'when plug_quantity params is given' do
+      context 'when filter by greater' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_greater: { plug_quantity: 21 } }
+          expect(assigns(:bars)).to contain_exactly(barAway, barCloser)
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_greater: { plug_quantity: 20 } }
+          expect(assigns(:bars)).to contain_exactly(barNotWifi, barAway, barCloser)
+        end
+      end
+
+      context 'when filter by less' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_less: { plug_quantity: 19 } }
+          expect(assigns(:bars)).to contain_exactly(barWifi)
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_less: { plug_quantity: 20 } }
+          expect(assigns(:bars)).to contain_exactly(barWifi, barNotWifi)
+        end
       end
     end
 
@@ -180,6 +211,64 @@ describe BarsController do
         end
 
         it 'populates an array of bars' do
+          expect(assigns(:bars)).to contain_exactly(barNotWifi)
+        end
+      end
+    end
+
+    context 'when wifi and plug_quantity params are given' do
+      context 'and wifi:true, plug_quantity for greater' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: true },
+                                filter_greater: { plug_quantity: 30 } }
+          expect(assigns(:bars)).to contain_exactly(barAway, barCloser)
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: true },
+                                filter_greater: { plug_quantity: 31 } }
+          expect(assigns(:bars)).to contain_exactly(barCloser)
+        end
+      end
+
+      context 'and wifi:true, plug_quantity for less' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: true },
+                                filter_less: { plug_quantity: 29 } }
+          expect(assigns(:bars)).to contain_exactly(barWifi)
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: true },
+                                filter_less: { plug_quantity: 30 } }
+          expect(assigns(:bars)).to contain_exactly(barWifi, barAway)
+        end
+      end
+
+      context 'and wifi:false, plug_quantity for greater' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: false },
+                                filter_greater: { plug_quantity: 20 } }
+          expect(assigns(:bars)).to contain_exactly(barNotWifi)
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: false },
+                                filter_greater: { plug_quantity: 21 } }
+          expect(assigns(:bars)).to contain_exactly()
+        end
+      end
+
+      context 'and wifi:false, plug_quantity for less' do
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: false },
+                                filter_less: { plug_quantity: 19 } }
+          expect(assigns(:bars)).to contain_exactly()
+        end
+
+        it 'populates an array of bars' do
+          get :index, params: { filter_has: { has_wifi: false },
+                                filter_less: { plug_quantity: 20 } }
           expect(assigns(:bars)).to contain_exactly(barNotWifi)
         end
       end

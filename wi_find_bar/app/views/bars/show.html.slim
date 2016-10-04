@@ -22,6 +22,6 @@
             .item-data-bar-name
               = t("#{c.type}")
             .item-data-bar-data
-              = t("#{c.value}Value")           
+              = t("#{c.value}Value")
   .map-bar
-    = image_tag "http://maps.google.com/maps/api/staticmap?size=2000x2000&markers=color:blue|label:A|#{@bar.address.lat}, #{@bar.address.lng}&key=AIzaSyD3KTrkOMrIxA95d-QOnfyaofqRRpoAEd8"
+    = image_tag Cartographer.new.show_map(@bar.address.value)

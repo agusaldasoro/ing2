@@ -11,4 +11,8 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     value { Faker::Address.street_address }
   end
+
+  factory :plug_quantity, class: PlugQuantity, parent: :characteristic do
+    value { Faker::Number.between(1, 100) }
+  end
 end
