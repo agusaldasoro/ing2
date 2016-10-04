@@ -1,0 +1,2 @@
+class PhoneNumber < Characteristic
+end
