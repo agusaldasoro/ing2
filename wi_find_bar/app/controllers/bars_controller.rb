@@ -3,10 +3,7 @@ class BarsController < ApplicationController
   helper  SmartListing::Helper
 
   def index
-    bars_scope = filter if (filter_has.present? && any_valid?(filter_has)) ||
-                           (filter_greater.present? && any_valid?(filter_greater)) ||
-                           (filter_less.present? && any_valid?(filter_less)) ||
-                           params_for_distance_range?
+    bars_scope = filter if should_filter?
     bars_scope ||= PublicBarAgency.new.search_all_bars
     @bars = smart_listing_create :bars, bars_scope, partial: 'bars/list',
                                                     default_sort: { name: 'asc' }
@@ -17,6 +14,19 @@ class BarsController < ApplicationController
   end
 
   private
+
+  def should_filter?
+    include_filter?(filter_has) || include_filter?(filter_greater) ||
+      include_filter?(filter_less) || params_for_distance_range?
+  end
+
+  def include_filter?(filter_name)
+    filter_name.present? && any_valid?(filter_name)
+  end
+
+  def filter
+    PublicBarAgency.new.search_and_filter(filters)
+  end
 
   def filter_has
     @filter_has ||= params[:filter_has]
@@ -44,10 +54,6 @@ class BarsController < ApplicationController
       return true if value.present?
     end
     false
-  end
-
-  def filter
-    PublicBarAgency.new.search_and_filter(filters)
   end
 
   def filters

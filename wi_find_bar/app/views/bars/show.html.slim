@@ -22,6 +22,9 @@
             .item-data-bar-name
               = t("#{c.type}")
             .item-data-bar-data
-              = t("#{c.value}Value")
+              - if c.type == 'HasWifi'
+                = t("#{c.value}Value")
+              - else
+                = c.value
   .map-bar
     = image_tag Cartographer.new.show_map(@bar.address.value)

@@ -255,7 +255,7 @@ describe BarsController do
         it 'populates an array of bars' do
           get :index, params: { filter_has: { has_wifi: false },
                                 filter_greater: { plug_quantity: 21 } }
-          expect(assigns(:bars)).to contain_exactly()
+          expect(assigns(:bars)).to contain_exactly
         end
       end
 
@@ -263,7 +263,7 @@ describe BarsController do
         it 'populates an array of bars' do
           get :index, params: { filter_has: { has_wifi: false },
                                 filter_less: { plug_quantity: 19 } }
-          expect(assigns(:bars)).to contain_exactly()
+          expect(assigns(:bars)).to contain_exactly
         end
 
         it 'populates an array of bars' do

@@ -32,3 +32,35 @@ FactoryGirl.create(:address, lat: -34.5574032, lng: -58.451084,
                              value: 'Juramento 1599', bar: bar7)
 FactoryGirl.create(:address, lat: -34.5452285, lng: -58.4410597,
                              value: 'Intendente Güiraldes 220', bar: bar8)
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:email, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:close_time, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:opening_time, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:phone_number, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:web_page, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:plug_quantity, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:capacity, bar: bar)
+end
+
+Bar.all.sample(3).each do |bar|
+  FactoryGirl.create(:average_price, bar: bar)
+end
