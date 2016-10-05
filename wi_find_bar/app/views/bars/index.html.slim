@@ -17,6 +17,58 @@
       .option
         = text_field_tag 'filter_distance[address]', '', class: "placeholder-direction",
                                         placeholder: "Dirección", autocomplete: :off
-        = number_field_tag 'filter_distance[distance]', '', class: 'distance-input', min: 0, value: 0.4, step: 0.1
+        = number_field_tag 'filter_distance[distance]', '', class: 'distance-input', min: 0, value: 0.4, step: 0.1      
+      .filter-title
+        | Email:
+      .option
+        = text_field_tag 'filter_has[email]', '', class: "placeholder-direction",
+                                        placeholder: "example@domain.com", autocomplete: :off
+      .filter-title
+        | Horario de Apertura:
+      .option
+        = text_field_tag 'filter_has[opening_time]', '', class: "placeholder-direction",
+                                        placeholder: "10.00", autocomplete: :off
+      .filter-title
+        | Horario de Cierre:
+      .option
+        = text_field_tag 'filter_has[close_time]', '', class: "placeholder-direction",
+                                        placeholder: "19.00", autocomplete: :off
+      .filter-title
+        | Número de Teléfono:
+      .option
+        = text_field_tag 'filter_has[phone_number]', '', class: "placeholder-direction",
+                                        placeholder: "(186)285-7925", autocomplete: :off
+      .filter-title
+        | Página Web:
+      .option
+        = text_field_tag 'filter_has[web_page]', '', class: "placeholder-direction",
+                                        placeholder: "http://example.com/clotilde.swift", autocomplete: :off
+      .filter-title
+        | Capacidad:
+      .option-min-max
+        .option-min
+          | Mínimo:
+          = number_field_tag 'filter_greater[capacity]', '', class: 'min-max-input', min: 0
+        .option-max
+          | Máximo:
+          = number_field_tag 'filter_less[capacity]', '', class: 'min-max-input', min: 0
+      .filter-title
+        | Precio Promedio:
+      .option-min-max
+        .option-min
+          | Mínimo:
+          = number_field_tag 'filter_greater[average_price]', '', class: 'min-max-input', min: 0, step: 0.1
+        .option-max
+          | Máximo:
+          = number_field_tag 'filter_less[average_price]', '', class: 'min-max-input', min: 0, step: 0.1
+      .filter-title
+        | Cantidad de Enchufes:
+      .option-min-max
+        .option-min
+          | Mínimo:
+          = number_field_tag 'filter_greater[plug_quantity]', '', class: 'min-max-input', min: 0
+        .option-max
+          | Máximo:
+          = number_field_tag 'filter_less[plug_quantity]', '', class: 'min-max-input', min: 0
   .bars-index-list
     = smart_listing_render :bars

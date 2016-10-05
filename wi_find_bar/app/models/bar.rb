@@ -6,4 +6,8 @@ class Bar < ApplicationRecord
   def address
     Address.find_by_bar_id(id)
   end
+
+  def has_wifi
+    HasWifi.find_by_bar_id(id)
+  end
 end

@@ -16,10 +16,16 @@
       | Longitud
     .item-data-bar-data
       = bar.address.lng
+  .item-data-bar
+    .item-data-bar-name
+      | Tiene Wifi
+    .item-data-bar-data
+      = t("#{bar.has_wifi.value}Value")
+.data-bar
   - bar.characteristics.each do |c|
-    - unless c.type == 'Address'
+    - unless c.type == 'Address' || c.type == 'HasWifi'
       .item-data-bar
         .item-data-bar-name
           = t("#{c.type}")
         .item-data-bar-data
-          = t("#{c.value}Value")
+          = c.value

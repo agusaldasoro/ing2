@@ -19,22 +19,32 @@
   padding-bottom: 20px;
 }
 
+.option-min-max {
+  display: flex;
+}
+
+.min-max-input {
+  width: 35%;
+  min-width: 50px;
+}
+
 .filter-title {
-  font-size: 20px;
+  font-size: 15px;
   color: midnightBlue;
   font-weight: bold;
-  padding: 20px 0 10px 0;
+  padding: 15px 0 5px 0;
 }
 
 .title-bar {
   font-size: 20px;
   font-weight: bold;
   color: midnightBlue;
-  padding: 5px;
+  padding: 20px 5px 5px 5px;
 }
 
 .data-bar {
   display: flex;
+  padding-top: 20px;
 }
 
 .item-bar {
