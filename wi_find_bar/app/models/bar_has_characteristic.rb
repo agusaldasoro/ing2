@@ -1,4 +1,4 @@
-class BarHasCharacteristic < FilterByCharacteristic
+class BarHasCharacteristic < CharacteristicValidator
   attr_accessor :characteristic
 
   def initialize(characteristic)

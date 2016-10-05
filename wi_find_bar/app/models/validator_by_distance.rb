@@ -1,4 +1,4 @@
-class FilterByDistance < Filter
+class ValidatorByDistance < Validator
   attr_accessor :address, :distance
 
   def initialize(address, distance)
@@ -7,6 +7,6 @@ class FilterByDistance < Filter
   end
 
   def check(bar)
-    Cartographer.new.distance_from_to(address, bar.address) <= distance
+    Cartographer.new.distance_between(address, bar.address) <= distance
   end
 end

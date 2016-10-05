@@ -1,5 +1,5 @@
 class Cartographer
-  def distance_from_to(from, to)
+  def distance_between(from, to)
     to.distance_to(from, units: :kms)
   end
 

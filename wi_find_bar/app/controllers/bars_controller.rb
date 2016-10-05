@@ -10,7 +10,7 @@ class BarsController < ApplicationController
   end
 
   def show
-    @bar = Bar.find(params[:id])
+    @bar = PublicBarAgency.new.search_bar_by_name(params[:name])
   end
 
   private
@@ -25,7 +25,7 @@ class BarsController < ApplicationController
   end
 
   def filter
-    PublicBarAgency.new.search_and_filter(filters)
+    PublicBarAgency.new.search_and_filter(Filter.new(validators))
   end
 
   def filter_has
@@ -56,26 +56,26 @@ class BarsController < ApplicationController
     false
   end
 
-  def filters
+  def validators
     res = []
-    filter_by_characteristics(res, filter_has, BarHasCharacteristic) if
+    validator_by_characteristics(res, filter_has, BarHasCharacteristic) if
       filter_has.present?
-    filter_by_characteristics(res, filter_greater, BarCharacteristicsGreater) if
+    validator_by_characteristics(res, filter_greater, BarCharacteristicsGreater) if
       filter_greater.present?
-    filter_by_characteristics(res, filter_less, BarCharacteristicsLess) if
+    validator_by_characteristics(res, filter_less, BarCharacteristicsLess) if
       filter_less.present?
-    filter_by_distance(res) if params_for_distance_range?
+    validator_by_distance(res) if params_for_distance_range?
     res
   end
 
-  def filter_by_characteristics(res, filter_option, klass)
+  def validator_by_characteristics(res, filter_option, klass)
     filter_option.each do |key, value|
       res << klass.new(key.classify.constantize.new(value: value)) if
         value.present?
     end
   end
 
-  def filter_by_distance(res)
-    res << FilterByDistance.new(filter_distance[:address], filter_distance[:distance].to_f)
+  def validator_by_distance(res)
+    res << ValidatorByDistance.new(filter_distance[:address], filter_distance[:distance].to_f)
   end
 end

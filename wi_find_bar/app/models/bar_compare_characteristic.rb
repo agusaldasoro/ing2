@@ -1,4 +1,4 @@
-class BarCompareCharacteristic < FilterByCharacteristic
+class BarCompareCharacteristic < CharacteristicValidator
   def check(bar)
   end
 end
